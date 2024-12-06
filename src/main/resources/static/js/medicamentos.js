@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                     ]
                 };
-                const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzMzQ5NjgzLCJpYXQiOjE3MzMzNDYwODMsImp0aSI6IjIwZTQxNjgwNzE0NzQ1YzY4ODQ5ZjlkNGYzM2NjNjZlIiwidXNlcl9pZCI6NX0.m4hKMpPsqxGcyl8OU3Q1-eWfeYQxl95IGdcoihqQXv8';  // Sin coma al final
+                const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzNDk3NDU1LCJpYXQiOjE3MzM0OTM4NTUsImp0aSI6IjY1MGFmYTM4MWE1NzQ5NTQ4ODc2MjQ2MjhkZjExZWNhIiwidXNlcl9pZCI6NX0.awr39j0qCW-HOEVytm-HzcvcgwPDTeOclzeW0HZkbjU';  // Sin coma al final
                 fetch('https://alexsandrovs.pythonanywhere.com/api/v1/facturas-cliente/', {
                     method: 'POST',
                     headers: {
