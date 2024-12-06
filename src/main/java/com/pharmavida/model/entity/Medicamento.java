@@ -1,13 +1,12 @@
 package com.pharmavida.model.entity;
 
-import jakarta.persistence.*;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Entity
+
 public class Medicamento {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @JsonProperty("id")
     private Long id;
 

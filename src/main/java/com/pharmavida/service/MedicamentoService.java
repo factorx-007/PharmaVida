@@ -1,14 +1,10 @@
 package com.pharmavida.service;
 
-import com.pharmavida.model.entity.Carrito;
 import com.pharmavida.model.entity.Medicamento;
-import com.pharmavida.repository.CarritoRepository;
-import com.pharmavida.repository.MedicamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MedicamentoService {

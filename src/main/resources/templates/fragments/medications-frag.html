@@ -25,20 +25,7 @@
                         <!-- Botones -->
                         <div class="d-grid gap-2">
                             <!-- Botón de compra -->
-                            <button class="btn btn-success btn-sm"
-                                    th:data-id="${medicamento.id}"
-                                    th:data-nombre="${medicamento.nombre}"
-                                    th:data-precio="${medicamento.precio}"
-                                    th:data-stock="${medicamento.stock}"
-                                    data-bs-toggle="modal" data-bs-target="#purchaseModal">
-                                <i class="bi bi-cart-plus"></i> Comprar
-                            </button>
 
-                            <!-- Botón para añadir al carrito -->
-                            <button class="btn btn-primary btn-sm"
-                                    th:onclick="'agregarACarrito(' + ${medicamento.id} + ')'" >
-                                <i class="bi bi-basket"></i> Añadir al Carrito
-                            </button>
                         </div>
                     </div>
                 </div>
