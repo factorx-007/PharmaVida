@@ -1,0 +1,4 @@
+<!-- Fragment Content (Reports) -->
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="reports" data-fragment-id = "reports-frag">
+    <h1>Hello From Settings</h1>
+</div>>

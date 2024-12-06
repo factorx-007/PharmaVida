@@ -1,0 +1,76 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="sales">
+    <div class="container mt-5 mb-5">
+        <div class="sales-header">
+            <h1 class="h3">Formulario de Compra</h1>
+        </div>
+
+        <form id="salesForm" th:action="@{/procesar-compra}" method="POST">
+            <input type="hidden" name="medicamentoId" th:value="${id}">
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="customerName" class="form-label"><strong>Nombre del Cliente:</strong></label>
+                    <input type="text" class="form-control" id="customerName" name="customerName" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="totalAmount" class="form-label"><strong>Monto Total:</strong></label>
+                    <input type="number" class="form-control" id="totalAmount" name="totalAmount" th:value="${precio}" required readonly>
+                </div>
+            </div>
+
+            <div class="sale-lines">
+                <table class="table table-striped table-sm">
+                    <thead>
+                    <tr>
+                        <th>Artículo</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <input type="text" class="form-control" name="itemName" th:value="${nombre}" readonly>
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" name="itemQuantity" min="1" th:attr="max=${stock}" value="1" required>
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" name="itemPrice" th:value="${precio}" readonly>
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" name="itemTotal" th:value="${precio}" readonly>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-success">Finalizar Compra</button>
+            </div>
+        </form>
+
+        <script th:src="@{/js/sales.js}"></script>
+
+        <script>
+            // Quantity change event listener
+            document.addEventListener('DOMContentLoaded', function() {
+                const quantityInput = document.querySelector('input[name="itemQuantity"]');
+                const priceInput = document.querySelector('input[name="itemPrice"]');
+                const totalInput = document.querySelector('input[name="itemTotal"]');
+                const totalAmountInput = document.getElementById('totalAmount');
+
+                quantityInput.addEventListener('input', function() {
+                    const cantidad = parseInt(this.value);
+                    const precioUnitario = parseFloat(priceInput.value);
+                    const total = cantidad * precioUnitario;
+
+                    totalInput.value = total.toFixed(2);
+                    totalAmountInput.value = total.toFixed(2);
+                });
+            });
+        </script>
+    </div>
+</div>

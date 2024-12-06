@@ -1,0 +1,151 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="medications">
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <h2 class="text-center">Medications</h2>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <!-- Iterar sobre los medicamentos -->
+            <div class="col" th:each="medicamento : ${medicamentos}">
+                <div class="card h-100">
+                    <!-- Imagen del medicamento -->
+                    <img th:src="${medicamento.imagenUrl}" class="card-img-top" alt="Imagen del Medicamento"
+                         style="height: 200px; object-fit: cover;" th:if="${medicamento.imagenUrl}" />
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <!-- Título del medicamento -->
+                        <h5 class="card-title" th:text="${medicamento.nombre}">Nombre</h5>
+                        <!-- Precio -->
+                        <p class="text-success fw-bold fs-5">S/ <span th:text="${medicamento.precio}">0.00</span></p>
+                        <!-- Categoría -->
+                        <p class="text-muted mb-1">Categoría: <span th:text="${medicamento.categoriaNombre}">Categoría</span></p>
+                        <!-- Fecha de vencimiento -->
+                        <p class="text-muted mb-1">Vence: <span th:text="${medicamento.fechaVencimiento}">Fecha</span></p>
+                        <!-- Stock -->
+                        <p class="text-muted mb-3">Stock: <span th:text="${medicamento.stock}">0</span></p>
+                        <!-- Botones -->
+                        <div class="d-grid gap-2">
+                            <!-- Botón de compra -->
+                            <button class="btn btn-success btn-sm"
+                                    th:data-id="${medicamento.id}"
+                                    th:data-nombre="${medicamento.nombre}"
+                                    th:data-precio="${medicamento.precio}"
+                                    th:data-stock="${medicamento.stock}"
+                                    data-bs-toggle="modal" data-bs-target="#purchaseModal">
+                                <i class="bi bi-cart-plus"></i> Comprar
+                            </button>
+
+                            <!-- Botón para añadir al carrito -->
+                            <button class="btn btn-primary btn-sm"
+                                    th:onclick="'agregarACarrito(' + ${medicamento.id} + ')'" >
+                                <i class="bi bi-basket"></i> Añadir al Carrito
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación de compra -->
+    <div class="modal fade" id="purchaseModal" tabindex="-1" aria-labelledby="purchaseModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="purchaseModalLabel">Confirmar Compra</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="productName"></p>
+                    <p id="productPrice"></p>
+                    <input type="number" id="purchaseQuantity" min="1" value="1" class="form-control mb-3" />
+                    <p id="totalPrice"></p>
+
+                    <!-- Aquí agregaremos el listado de productos seleccionados -->
+                    <div id="selectedProducts"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelPurchase">Cancelar</button>
+                    <button type="button" class="btn btn-success" id="confirmPurchase">Confirmar Compra</button>
+                    <button type="button" class="btn btn-primary" id="addAnotherProduct">Agregar Otro Producto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carga el archivo de JavaScript -->
+    <script th:src="@{/js/medicamentos.js}"></script>
+</div>
+
+<script>
+    let selectedProducts = [];  // Listado de productos seleccionados
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const buyButtons = document.querySelectorAll('.btn-success');
+        const modal = new bootstrap.Modal(document.getElementById('purchaseModal'));
+
+        buyButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const id = this.getAttribute('data-id');
+                const nombre = this.getAttribute('data-nombre');
+                const precio = this.getAttribute('data-precio');
+                const stock = this.getAttribute('data-stock');
+
+                // Mostrar detalles en el modal
+                document.getElementById('productName').innerText = `Producto: ${nombre}`;
+                document.getElementById('productPrice').innerText = `Precio: S/ ${precio}`;
+                document.getElementById('totalPrice').innerText = `Total: S/ ${precio}`;
+
+                const quantityInput = document.getElementById('purchaseQuantity');
+                quantityInput.addEventListener('input', function () {
+                    const cantidad = this.value;
+                    const total = parseFloat(precio) * cantidad;
+                    document.getElementById('totalPrice').innerText = `Total: S/ ${total.toFixed(2)}`;
+                });
+
+                modal.show();
+
+                // Confirmar la compra
+                document.getElementById('confirmPurchase').addEventListener('click', function () {
+                    const cantidad = parseInt(quantityInput.value, 10);  // Convertir cantidad a entero
+                    const total = parseFloat(precio) * cantidad;
+
+                    // Agregar al listado de productos seleccionados
+                    selectedProducts.push({
+                        producto: id,
+                        cantidad: cantidad,
+                        nombre: nombre,
+                        precio: precio
+                    });
+
+                    // Mostrar listado de productos seleccionados
+                    updateSelectedProductsList();
+
+                    // Limpiar modal
+                    modal.hide();
+                });
+            });
+        });
+
+        // Agregar otro producto
+        document.getElementById('addAnotherProduct').addEventListener('click', function () {
+            modal.hide();  // Solo cierra el modal sin hacer más
+        });
+
+        // Cancelar compra y redirigir a la página de medicamentos
+        document.getElementById('cancelPurchase').addEventListener('click', function () {
+            modal.hide();  // Cierra el modal
+            window.location.href = '/pharmacy-ms/medications';  // Redirige a la página de medicamentos
+        });
+    });
+
+    // Función para actualizar el listado de productos seleccionados
+    function updateSelectedProductsList() {
+        const selectedProductsDiv = document.getElementById('selectedProducts');
+        selectedProductsDiv.innerHTML = '<h5>Productos seleccionados:</h5>';
+        selectedProducts.forEach(product => {
+            const productItem = document.createElement('p');
+            productItem.innerText = `${product.nombre} - Cantidad: ${product.cantidad} - Total: S/ ${(product.precio * product.cantidad).toFixed(2)}`;
+            selectedProductsDiv.appendChild(productItem);
+        });
+    }
+</script>

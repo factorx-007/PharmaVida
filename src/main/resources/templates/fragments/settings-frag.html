@@ -1,0 +1,127 @@
+<!-- Fragment Content (Reports) -->
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="reports" data-fragment-id = "reports-frag">
+    <!-- Sección Consultas -->
+    <section class="consultas-section container mt-5">
+        <div class="row">
+            <!-- Información sobre la Farmacia -->
+            <div class="col-md-6">
+                <h2 class="display-4 text-primary">Consulta con Nuestros Expertos</h2>
+                <p class="lead text-muted">
+                    En <strong>PharmaVida</strong>, nos preocupamos por tu salud. Contamos con un equipo de farmacéuticos y expertos dispuestos a brindarte asesoría personalizada sobre medicamentos, tratamientos y cuidados de salud. Si tienes alguna duda, ¡no dudes en contactarnos!
+                </p>
+                <p class="text-muted">
+                    Ofrecemos consultas en línea para que recibas la atención que necesitas desde la comodidad de tu hogar. Además, contamos con una amplia gama de productos para mejorar tu bienestar. ¡Confía en nosotros para cuidar de ti y los tuyos!
+                </p>
+            </div>
+
+            <!-- Formulario de Consulta -->
+            <div class="col-md-6">
+                <h3 class="text-primary">Formulario de Consulta</h3>
+                <form action="/submit-consulta" method="post">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Tu Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa tu nombre" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Tu Correo Electrónico</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Ingresa tu correo electrónico" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="consulta" class="form-label">Consulta</label>
+                        <textarea class="form-control" id="consulta" name="consulta" rows="4" placeholder="Escribe tu consulta aquí" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg">Enviar Consulta</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Sección de Testimonios -->
+        <div class="row mt-5">
+            <div class="col-md-12 text-center">
+                <h3 class="text-primary mb-4">Testimonios de Clientes</h3>
+                <div class="testimonial-container">
+                    <div class="testimonial">
+                        <p class="text-muted">"Gracias a las consultas online de PharmaVida, pude recibir asesoría para elegir el medicamento adecuado para mi tratamiento. ¡Muy recomendados!"</p>
+                        <p><strong>- Juan Pérez</strong></p>
+                    </div>
+                    <div class="testimonial">
+                        <p class="text-muted">"La atención que recibí fue excelente. Pude aclarar todas mis dudas sobre los suplementos que estaba tomando."</p>
+                        <p><strong>- María Gómez</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estilos CSS -->
+    <style>
+        .consultas-section {
+            padding: 40px 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .consultas-section h2, .consultas-section h3 {
+            color: #005073;
+            font-weight: bold;
+        }
+
+        .consultas-section p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .consultas-section .form-label {
+            font-weight: bold;
+        }
+
+        .consultas-section .form-control {
+            border-radius: 8px;
+        }
+
+        .consultas-section .btn {
+            font-size: 1.1rem;
+            padding: 12px 30px;
+            border-radius: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        .consultas-section .btn:hover {
+            background-color: #005073;
+        }
+
+        .testimonial-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .testimonial {
+            background-color: #ffffff;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            color: #333;
+        }
+
+        .testimonial p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        @media (max-width: 767px) {
+            .consultas-section {
+                padding: 20px;
+            }
+
+            .testimonial-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+
+</div>>

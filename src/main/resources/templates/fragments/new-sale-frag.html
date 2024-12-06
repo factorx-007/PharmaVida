@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva Venta</title>
+    <link rel="stylesheet" href="path/to/bootstrap.css">
+</head>
+<body>
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="new-sale">
+    <div class="container mt-5 mb-5">
+        <h1 class="h3 mb-4">Nueva Venta</h1>
+
+        <form class="sale-form mb-4">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="customer-name" class="form-label">Nombre del Cliente</label>
+                    <input type="text" class="form-control" id="customer-name" placeholder="Ingrese el nombre del cliente" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="barcode-input" class="form-label">ID del Articulo</label>
+                    <input type="text" class="form-control" id="barcode-input" placeholder="Ingrese el ID del producto" required>
+                </div>
+            </div>
+        </form>
+
+        <div class="table-responsive mb-4">
+            <table class="table table-hover">
+                <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Medicamento</th>
+                    <th>Precio Unitario</th>
+                    <th>Cantidad</th>
+                    <th>Precio Total</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="sale-items">
+                </tbody>
+            </table>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="m-0">Total a Pagar: $<span id="total-amount">0.00</span></h4>
+            <button type="button" class="btn btn-success" id="complete-sale">Completar Venta</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const saleItems = [];
+    let totalAmount = 0;
+
+    document.getElementById('barcode-input').addEventListener('keyup', function(event) {
+        if (event.key === 'Enter') {
+            const barcode = this.value.trim();
+            if (barcode === '') {
+                alert('Por favor, ingrese un ID de producto');
+                return;
+            }
+
+            fetch(`/api/medicamentos/${barcode}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Medicamento no encontrado');
+                    }
+                    return response.json();
+                })
+                .then(medicamento => {
+                    if (!medicamento) {
+                        alert('Producto no encontrado');
+                        return;
+                    }
+                    addItemToSale(medicamento);
+                    this.value = ''; // Limpiar el campo de entrada después de agregar el producto
+                })
+                .catch(error => {
+                    alert(error.message);
+                });
+        }
+    });
+
+    function addItemToSale(medicamento) {
+        const quantity = 1;
+        const totalPrice = medicamento.price * quantity;
+
+        saleItems.push({
+            id: medicamento.id,
+            name: medicamento.medicationName,
+            price: medicamento.price,
+            quantity,
+            totalPrice
+        });
+        totalAmount += totalPrice;
+
+        updateSaleTable();
+    }
+
+    function updateSaleTable() {
+        const saleItemsTable = document.getElementById('sale-items');
+        saleItemsTable.innerHTML = '';  // Limpiar la tabla antes de agregar los nuevos ítems
+
+        saleItems.forEach((item, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.id}</td>
+                <td>${item.name}</td>
+                <td>${item.price.toFixed(2)}</td>
+                <td>${item.quantity}</td>
+                <td>${item.totalPrice.toFixed(2)}</td>
+                <td><button class="btn btn-danger btn-sm" onclick="removeItem(${index})">Eliminar</button></td>
+            `;
+            saleItemsTable.appendChild(row);
+        });
+
+        document.getElementById('total-amount').innerText = totalAmount.toFixed(2);
+    }
+
+    function removeItem(index) {
+        totalAmount -= saleItems[index].totalPrice;
+        saleItems.splice(index, 1);
+        updateSaleTable();
+    }
+
+    document.getElementById('complete-sale').addEventListener('click', function() {
+        const customerName = document.getElementById('customer-name').value;
+        if (!customerName || saleItems.length === 0) {
+            alert('Por favor, ingrese el nombre del cliente y agregue al menos un producto.');
+            return;
+        }
+
+        const saleData = {
+            customerName,
+            items: saleItems,
+            totalAmount
+        };
+
+        fetch('/api/ventas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(saleData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al registrar la venta');
+            }
+            return response.json();
+        })
+        .then(data => {
+            alert('Venta completada. Total a pagar: $' + totalAmount.toFixed(2));
+            totalAmount = 0;
+            saleItems.length = 0;
+            updateSaleTable();
+            document.getElementById('customer-name').value = '';
+        })
+        .catch(error => {
+            alert(error.message);
+        });
+    });
+</script>
+
+</body>
+</html>

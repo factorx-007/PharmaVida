@@ -1,0 +1,159 @@
+<!-- Fragment Content (Reports) -->
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="reports" class="about-panel">
+    <div class="container mt-5">
+        <!-- Título de la página -->
+        <div class="row mb-5">
+            <div class="col-md-8">
+                <h1 class="display-4 text-primary">Ubicación de PharmaVida</h1>
+                <p class="lead text-muted">Encuentra nuestra farmacia en la <strong>Av. Fátima</strong> de Trujillo. Aquí puedes ver nuestra ubicación en el mapa, los horarios de atención, servicios disponibles y cómo ponerte en contacto con nosotros.</p>
+            </div>
+            <div class="row mb-5">
+                <div class="col-md-4 text-end">
+                    <a href="https://maps.app.goo.gl/iWZGLyM1JXZxFtpy7" target="_blank">
+                        <button class="btn btn-primary btn-lg" id="find-store">Encontrar Tienda</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Imagen con enlace a Google Maps -->
+        <div class="row mb-5">
+            <div class="col-md-12 text-center">
+                <h3 class="text-primary">Ubicación en Google Maps</h3>
+                <a href="https://maps.app.goo.gl/iWZGLyM1JXZxFtpy7" target="_blank">
+                    <img src="/pharmacy-ms/images/img.png" alt="Ubicación en Google Maps" width="60%" class="about-image img-fluid rounded shadow-lg">
+                </a>
+            </div>
+        </div>
+
+        <!-- Información de Horarios de Atención -->
+        <div class="row mb-5">
+            <div class="col-md-6">
+                <h3 class="text-primary">Horarios de Atención</h3>
+                <ul class="list-unstyled">
+                    <li><strong>Lunes - Viernes:</strong> 8:00 AM - 8:00 PM</li>
+                    <li><strong>Sábado:</strong> 9:00 AM - 6:00 PM</li>
+                    <li><strong>Domingo:</strong> Cerrado</li>
+                </ul>
+            </div>
+
+            <!-- Servicios Disponibles -->
+            <div class="col-md-6">
+                <h3 class="text-primary">Servicios Disponibles</h3>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-pills text-success"></i> Asesoramiento Farmacéutico</li>
+                    <li><i class="fas fa-medkit text-danger"></i> Venta de Medicamentos Recetados</li>
+                    <li><i class="fas fa-tooth text-warning"></i> Venta de Productos de Cuidado Personal</li>
+                    <li><i class="fas fa-truck text-info"></i> Entrega a Domicilio</li>
+                    <li><i class="fas fa-heartbeat text-muted"></i> Pruebas de Presión Arterial</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Más Información -->
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <h3 class="text-primary">Más Información sobre PharmaVida</h3>
+                <p class="text-muted">En <strong>PharmaVida</strong> no solo te ofrecemos medicamentos de calidad, sino también un ambiente de confianza donde te brindamos asesoramiento personalizado para todas tus necesidades de salud. Además, contamos con productos de cuidado personal y atención especializada en diversas áreas.</p>
+                <p><strong>Visítanos en:</strong> Av. Fátima 123, Trujillo, Perú</p>
+            </div>
+        </div>
+
+        <!-- Productos Destacados -->
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <h3 class="text-primary">Productos Destacados</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <img src="/static/images/producto1.jpg" class="card-img-top" alt="Producto 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Medicamento A</h5>
+                                <p class="card-text">Medicamento eficaz para tratar diversas afecciones.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <img src="/static/images/producto2.jpg" class="card-img-top" alt="Producto 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Medicamento B</h5>
+                                <p class="card-text">Un excelente producto para el cuidado personal y la salud.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <img src="/static/images/producto3.jpg" class="card-img-top" alt="Producto 3">
+                            <div class="card-body">
+                                <h5 class="card-title">Producto C</h5>
+                                <p class="card-text">Producto ideal para el alivio rápido de malestares.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonios de Clientes -->
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <h3 class="text-primary">Testimonios de Clientes</h3>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <blockquote class="blockquote">
+                            <p class="mb-0">"La atención es increíble, siempre me explican cómo debo tomar mis medicamentos. ¡Muy agradecido!"</p>
+                            <footer class="blockquote-footer">Carlos García, Cliente regular</footer>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <blockquote class="blockquote">
+                            <p class="mb-0">"Siempre encuentro lo que necesito, además de que tienen una entrega a domicilio muy rápida."</p>
+                            <footer class="blockquote-footer">Ana López, Cliente habitual</footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Información de Contacto -->
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <h3 class="text-primary">Contacto</h3>
+                <p><strong>Teléfono:</strong> +51 123 456 789</p>
+                <p><strong>Email:</strong> contacto@pharmavida.com</p>
+                <p><strong>Dirección:</strong> Av. Fátima 123, Trujillo, Perú</p>
+                <p><strong>Redes Sociales:</strong></p>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#" class="btn btn-social-icon btn-facebook"><i class="fab fa-facebook"></i></a></li>
+                    <li class="list-inline-item"><a href="#" class="btn btn-social-icon btn-twitter"><i class="fab fa-twitter"></i></a></li>
+                    <li class="list-inline-item"><a href="#" class="btn btn-social-icon btn-instagram"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Formulario de Contacto -->
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <h3 class="text-primary">Contáctanos</h3>
+                <form>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="name" placeholder="Tu nombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="email" placeholder="Tu correo electrónico">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Mensaje</label>
+                        <textarea class="form-control" id="message" rows="4" placeholder="Escribe tu mensaje"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

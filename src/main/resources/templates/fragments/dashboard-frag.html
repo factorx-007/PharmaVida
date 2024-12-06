@@ -1,0 +1,170 @@
+<!-- about-frag.html -->
+<div xmlns:th="http://www.thymeleaf.org" class="about-panel">
+    <!-- Acerca de Nosotros -->
+    <section class="about-section container mt-5">
+        <div class="row mb-5">
+            <div class="col-md-8">
+                <h2 class="display-4 text-primary">Acerca de Nosotros</h2>
+                <p class="lead text-muted">
+                    En <strong>PharmaVida</strong>, nos comprometemos a mejorar la salud y el bienestar de nuestra comunidad. Nuestra misión es ofrecer productos farmacéuticos y servicios de salud de la más alta calidad, asegurando que cada uno de nuestros clientes reciba el mejor cuidado y atención.
+                </p>
+                <p class="text-muted">
+                    Contamos con un catálogo extenso de medicamentos, productos de cuidado personal y suplementos nutricionales, brindando una experiencia de compra conveniente y segura. Gracias a la innovación constante, garantizamos un servicio rápido, accesible y confiable.
+                </p>
+                <a href="medications-frag.html" class="btn btn-primary btn-lg mt-4">Ver nuestros productos</a>
+            </div>
+            <div class="col-md-4 text-center">
+                <img src="/pharmacy-ms/images/img_1.png" alt="Imagen de PharmaVida" class="about-image img-fluid rounded shadow-lg">
+            </div>
+        </div>
+
+        <!-- Nuestros Valores -->
+        <div class="row mb-5">
+            <div class="col-md-12 text-center">
+                <h3 class="text-primary mb-3">Nuestros Valores</h3>
+                <p class="text-muted mb-4">
+                    En PharmaVida, nos guiamos por principios sólidos de integridad, dedicación y excelencia en el servicio. Nuestro objetivo es establecer relaciones duraderas y basadas en la confianza con nuestros clientes, fomentando un estilo de vida saludable y apoyando a nuestra comunidad.
+                </p>
+                <div class="image-container my-3">
+                    <img id="img_2" src="/pharmacy-ms/images/img_2.png" alt="Nuestros Valores" class="about-image img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+
+        <!-- Por Qué Elegirnos -->
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <h3 class="text-primary mb-4">¿Por Qué Elegirnos?</h3>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-user-md text-primary me-2"></i>Atención personalizada y consultas farmacéuticas profesionales.</li>
+                    <li><i class="fas fa-truck text-info me-2"></i>Entrega rápida y segura a domicilio, garantizando tu comodidad.</li>
+                    <li><i class="fas fa-capsules text-success me-2"></i>Catálogo extenso de productos y medicamentos de alta calidad.</li>
+                    <li><i class="fas fa-tags text-warning me-2"></i>Promociones y descuentos especiales para nuestros clientes frecuentes.</li>
+                    <li><i class="fas fa-shield-alt text-danger me-2"></i>Compromiso con la calidad y seguridad en cada compra realizada.</li>
+                </ul>
+                <div class="text-center my-4">
+                    <img src="/pharmacy-ms/images/img_3.png" alt="Equipo de PharmaVida" class="about-image img-fluid rounded shadow-lg img-small">
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Añadido un pie de página con llamada a acción -->
+<section class="call-to-action bg-dark text-white py-5 text-center">
+    <h3 class="display-4 mb-3">Únete a nuestra familia PharmaVida</h3>
+    <p class="lead mb-4">Transforma tu salud con los productos de calidad que te ofrecemos. ¡Tu bienestar es nuestra prioridad!</p>
+    <a href="medications" class="btn btn-light btn-lg">Explora nuestros productos</a>
+</section>
+
+<style>
+    /* Mejoras generales */
+   .about-panel {
+       padding: 40px 20px;
+       background-color: #f4f6f9;
+       border-radius: 10px;
+       box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+   }
+
+   .about-section {
+       max-width: 1100px;
+       margin: 0 auto;
+       color: #555;
+   }
+
+   .about-section h2, .about-section h3 {
+       color: #005073;
+       font-weight: bold;
+       font-family: 'Arial', sans-serif;
+   }
+
+   .about-section p {
+       font-size: 1.2rem;
+       line-height: 1.8;
+       color: #333;
+   }
+
+   /* Estilos para los enlaces */
+   .about-section a {
+       text-decoration: none;
+       color: #fff;
+       background-color: #005073;
+       border-radius: 4px;
+       padding: 10px 20px;
+       transition: all 0.3s ease;
+   }
+
+   .about-section a:hover {
+       color: #005073;
+       background-color: #fff;
+       border-radius: 4px;
+       text-decoration: none;
+   }
+
+   /* Lista de razones */
+   .about-section ul {
+       padding: 0;
+       list-style: none;
+       color: #333;
+       line-height: 1.8;
+   }
+
+   .about-section ul li {
+       display: flex;
+       align-items: center;
+       margin: 10px 0;
+   }
+
+   .about-section ul li i {
+       font-size: 1.4rem;
+   }
+
+   /* Imágenes */
+   .about-image {
+       width: 100%;
+       height: auto;
+       border-radius: 8px;
+   }
+
+   #img_2, .img-small {
+       max-width: 45%;
+       height: auto;
+       margin: 0 auto;
+   }
+
+   .call-to-action {
+       background-color: #08304a;
+       color: white;
+       border-radius: 10px;
+       box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+   }
+
+   .call-to-action .btn {
+       font-size: 1.1rem;
+       padding: 12px 30px;
+       border-radius: 30px;
+       background-color: #005073;
+       transition: background-color 0.3s ease;
+   }
+
+   .call-to-action .btn:hover {
+       background-color: #003C53;
+   }
+
+   /* Aseguramos un diseño responsive */
+   @media (max-width: 767px) {
+       .about-image, #img_2, .img-small {
+           max-width: 100%;
+           margin-bottom: 20px;
+       }
+
+       .about-section {
+           padding: 20px;
+       }
+
+       .call-to-action .btn {
+           padding: 12px 20px;
+       }
+   }
+
+</style>
